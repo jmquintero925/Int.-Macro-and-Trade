@@ -1,5 +1,7 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
+\usepackage[left=3cm,right=3cm,top=3cm,bottom=3cm]{geometry}
+\usepackage{amsmath,amsfonts,amssymb,xfrac,enumitem,xcolor}
 
 \title{Int. Macro and Trade. Assignment 1}
 \author{Jose M. Quintero-Holguin}
@@ -9,5 +11,138 @@
 
 \maketitle
 
+\section{Ricardian Model - Competitive Statics}
+Consider a version of DFS (1977) with two countries, Home and Foreign, and a continuum of goods $z \in[0,1]$. Labor supply is $L$ at Home and $L^*$ at Foreign. Preferences in the two countries are given by
+    \begin{align*}
+    U=\int_0^1 \ln c(z) dz,
+    \end{align*}
+and the unit labor requirement for good $\mathrm{z}$ at Home and Foreign are respectively given by
+    \begin{align*}
+    a(z)=\left(\frac{z}{T}\right)^{\frac{1}{\theta}} \text { and } a^*(z)=\left(\frac{1-z}{T^*}\right)^{\frac{1}{\theta}}.
+    \end{align*}
+\begin{enumerate}
+    \item In the free trade equilibrium, solve for the relative wage, $\omega \equiv \sfrac{w}{w^*}$, the cut-off good, $\Bar{z}$, and the real wage in each country.
+    \item[Sol.] First, consider the problem of the household. Given that the budget restriction is 
+    \begin{equation*}
+        \int_0^1p(z)c(z)\mathrm{d}z = wL
+    \end{equation*}
+    then the first-order condition with respect to a particular good is 
+    \begin{equation}\label{ps1:q1:foc1}
+        p(z)c^*(z) = \frac{1}{\lambda}
+    \end{equation}
+    where $\lambda$ denotes the multiplier associated to the budget restriction. By integrating \eqref{ps1:q1:foc1} with respect to $z$ it follows that 
+    \begin{equation*}
+        \lambda wL =1.
+    \end{equation*}
+    This implies that $b(z)$ is 
+    \begin{align*}
+        b(z) &= \frac{p(z)c^*(z)}{wL} \\ 
+             &= \frac{1}{\lambda wL} = 1
+    \end{align*}
+    Next, the share of expenditure on home goods by consumers in both countries is 
+    \begin{equation*}
+        \theta(\bar{z}) = \int_0^{\Bar{z}} b(z)\mathrm{d}z = \Bar{z}.
+    \end{equation*}
+    With this, $B(z)$ is 
+    \begin{equation*}
+        B(z) = \frac{z}{1-z}\frac{L^*}{L}.
+    \end{equation*}
+    To solve for the optimal cut-off equate $B(z)$ to $A(z)$ to get 
+    \begin{equation*}
+        B(z) = \frac{z}{1-z}\frac{L^*}{L} = \left(\frac{1-z}{z}\frac{T}{T^*}\right)^{\sfrac{1}{\theta}} = A(z)
+    \end{equation*}
+    Some algebra implies that 
+    \begin{equation*}
+        \frac{1-z}{z} = \underbrace{\left(\frac{L^*}{L}\right)^{\frac{\theta}{1+\theta}} \left(\frac{T^*}{T}\right)^{\frac{1}{1+\theta}}}_{\Psi}
+    \end{equation*}
+    which implies that the cutoff is 
+    \begin{equation}
+        \bar{z} = \frac{1}{1+\Psi}
+    \end{equation}
+    Next, the relative wage is defined by 
+    \begin{equation}
+        \omega = \frac{\bar{z}}{1-\bar{z}} \frac{L^*}{L}
+    \end{equation}
+    \item For each of the shocks below, consider the implications for the relative wage, the cut-off good, and the real wage in each country.
+    \begin{enumerate}
+        \item Identical productivity growth in the two countries: $d \ln T^*=d \ln T=x>0$.
+        \item[Sol.] Note that there is no effect as 
+        \begin{equation*}
+            d\ln T^*=d\ln T \Longleftrightarrow d\ln\left(\frac{T^*}{T}\right) = 0
+        \end{equation*}
+        Since the logarithm is an increasing function, this can only happen if the quotient between $T$ and $T^*$ remains unchanged. Thus, $\Psi$ remains constant, and the rest of the equilibrium variables remain.  
+        \item Productivity growth at Foreign only: $d \ln T^*=x>0$ and $d \ln T=0$.
+        \item[Sol.] To do comparative statics, it is sufficient to understand the effect of a change in a parameter on $\Psi$. Note that
+        \begin{align*}
+            \frac{\partial \bar{z}}{\partial x} = -\bar{z}^2\frac{\partial\Psi}{\partial x}
+        \end{align*}
+        Thus, every change to $\bar{z}$ comes through $\Psi$. To make calculation simpler, take the log of $\Psi$
+        \begin{equation}\label{ps1:q1:lnPsi}
+            \ln\Psi = \frac{\theta}{1+\theta}\ln\left(\frac{L^*}{L}\right) + \frac{1}{1+\theta}\ln\left(\frac{T^*}{T}\right)
+        \end{equation}
+        Then 
+        \begin{equation*}
+            \frac{\partial\ln\Psi}{\partial\ln T^*} = \frac{1}{1+\theta}>0
+        \end{equation*}
+        which implies that 
+        \begin{align*}
+            \frac{\partial \bar{z}}{\partial\ln T^*} &<0 & \frac{\partial \omega }{\partial \ln T^*} < 0. 
+        \end{align*}
+        For the second inequality, I am using the fact that 
+        \begin{equation*}
+            \ln\omega = \ln\bar{z}-\ln(1-\bar{z}) + \ln\left(\frac{L^*}{L}\right)
+        \end{equation*}
+        and thus 
+        \begin{equation*}
+            \frac{\partial\ln\omega}{\partial\bar{z}} = \frac{1}{z}+\frac{1}{1-z}>0
+        \end{equation*}
+        This implies that the $\bar{z}$ effect in $\omega$ is positive. 
+        \item Technological convergence: increase in $\theta$ (i.e., decline in dispersion of unit labor requirement).
+        \item[Sol.] Again refer to equation \eqref{ps1:q1:lnPsi} and take the derivative with respect to $\theta$
+        \begin{align*}
+            \frac{\partial\ln\Psi}{\partial\theta} &= \frac{1}{(1+\theta)^2}\underbrace{\left[\theta\ln\left(\frac{L^*}{L}\right)-\ln\left(\frac{T^*}{T}\right)\right]}_{\Gamma}  \\ 
+        \end{align*}
+        The effect is now ambiguous as it depends on the sign of $\Gamma$. If $\Gamma>0$, then 
+        \begin{equation*}
+            \frac{\partial\bar{z}}{\partial\theta} = \underbrace{\frac{\partial\bar{z}}{\partial\Psi}}_{>0}\underbrace{\frac{\partial\Psi}{\partial\theta}}_{>0}
+        \end{equation*}
+        and the same logic will carry for $\omega$. 
+        \item Income transfer of $D$ from Home to Foreign. That is, total spending at Home is $w L-D$ and at Foreign is $w^* L^*+D$. Starting from the equilibrium with $D=0$, analyze an increase in the transfer of $d D=\Delta>0$.
+        \item[Sol.] For this problem, first, let us write the trade balance condition
+        \begin{equation*}
+            wL-D = \theta(z)\left(wL+w^*L^*\right) = z\left(wL+w^*L^*\right)
+        \end{equation*}
+        \textcolor{red}{Which is the wage that I am supposed to normalize?}
+    \end{enumerate}
+\end{enumerate}
+
+\section{Ricardian model - EK extension}
+Consider the same environment based on EK $(2002)$ seen in class, where we denote a country by $i$ and a good by $j$. In EK, the productivity of country $i$ in good $j, Z_i(j)$, is the realization of a random variable (drawn independently for each $j$ ) from a country specific distribution $P\left[Z_i(j)<z\right]=e^{T_i z^{-\theta}}$. This imposes that the unit labor requirements for each good $j$ are independent across countries.
+\begin{enumerate}
+    \item Discuss in a few sentences how realistic this assumption is.
+\end{enumerate}
+Now consider a generalization of the EK model, where the vector of productivity across countries for a given good $j, Z(j) \equiv\left\{Z_i(j)\right\}_{i=1}^N$, is drawn from the following joint distribution (called the Generalized Extreme Value Distribution - see McFadden (1981)):
+\begin{align*}
+P\left[Z_i(j) \leq z_i, i=1, . . N\right]=\exp \left[-G\left(T_1 z_1^{-\theta}, \ldots, T_N z_N^{-\theta}\right)\right] .
+\end{align*}
+The function $G(\cdot)$ is called the correlation function as it controls the correlation in the productivity of different countries for the same good. We assume that it has the following properties (i) $G(\cdot)$ is homogeneous of degree one, (ii) $G\left(x_1, \ldots, x_N\right) \rightarrow \infty$ as $x_0 \rightarrow \infty$ for some 0 , (iii) the derivatives of $G$ exist and are continuous up to order $N$, (iv) for any $\left(i_1, \ldots, i_k\right)$ distinct from $\{1, \ldots, N\}, \partial^k G / \partial i_1 \ldots \partial i_k$ is nonnegative if $k$ is odd and nonpositive if $k$ is even. Note that the distribution is identical to the one in the baseline model derived in class when $G\left(x_1, \ldots, x_N\right)=\sum_{i=1}^N x_i$. Using this distribution, follow the same steps in the lecture notes to extend the EK model.
+\begin{enumerate}
+    \item Let $p_n(j)$ denote the price of good $j$ in country $n$. Show that the price distribution in country $n$ is given by
+    \begin{align*}
+        G_n(p)=\operatorname{Pr}\left[p_n(j) \leq p\right]=1-\exp \left[-G_n p^\theta\right]
+    \end{align*}
+    where
+    \begin{align*}
+        G_n \equiv G\left(T_1\left(d_{n 1} w_1\right)^{-\theta}, \ldots, T_N\left(d_{n N} w_N\right)^{-\theta}\right)
+    \end{align*}
+    \item Show that the share of goods country $n$ purchases from country $i$ is given by
+    \begin{align*}
+        \pi_{n i}=\frac{T_i\left(d_{n i} w_i\right)^{-\theta} G_{n i}}{G_n}
+    \end{align*}
+    where
+    \begin{align*}
+        G_{n i} \equiv \frac{\partial G\left(T_1\left(d_{n 1} w_1\right)^{-\theta}, \ldots, T_N\left(d_{n N} w_N\right)^{-\theta}\right)}{\partial z_i}
+    \end{align*}
+\end{enumerate}
 
 \end{document}
