@@ -1,15 +1,22 @@
-\documentclass{article}
+\documentclass[12pt,oneside,reqno]{amsart}
 \usepackage[utf8]{inputenc}
-\usepackage[left=3cm,right=3cm,top=3cm,bottom=3cm]{geometry}
+\usepackage[left=3cm,right=3cm,top=2.5cm,bottom=2.5cm]{geometry}
 \usepackage{amsmath,amsfonts,amssymb,xfrac,enumitem,xcolor}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
 
-\title{Int. Macro and Trade. Assignment 1}
-\author{Jose M. Quintero-Holguin}
-\date{October 2022}
+\newcommand{\pr}{\mathbb{P}\mathrm{r}}
+
+\title{Assignment I}
+\author{Jose M. Quintero}
+% \date{October 2022}
+
+\lhead{Jose M. Quintero}
+\rhead{Int. Macro and Trade.} 
 
 \begin{document}
 
-\maketitle
+\maketitle 
 
 \section{Ricardian Model - Competitive Statics}
 Consider a version of DFS (1977) with two countries, Home and Foreign, and a continuum of goods $z \in[0,1]$. Labor supply is $L$ at Home and $L^*$ at Foreign. Preferences in the two countries are given by
@@ -20,9 +27,9 @@ and the unit labor requirement for good $\mathrm{z}$ at Home and Foreign are res
     \begin{align*}
     a(z)=\left(\frac{z}{T}\right)^{\frac{1}{\theta}} \text { and } a^*(z)=\left(\frac{1-z}{T^*}\right)^{\frac{1}{\theta}}.
     \end{align*}
-\begin{enumerate}
+\begin{enumerate}[leftmargin=*]
     \item In the free trade equilibrium, solve for the relative wage, $\omega \equiv \sfrac{w}{w^*}$, the cut-off good, $\Bar{z}$, and the real wage in each country.
-    \item[Sol.] First, consider the problem of the household. Given that the budget restriction is 
+    \item[\textbf{Sol.}] First, consider the problem of the household. Given that the budget restriction is 
     \begin{equation*}
         \int_0^1p(z)c(z)\mathrm{d}z = wL
     \end{equation*}
@@ -64,15 +71,15 @@ and the unit labor requirement for good $\mathrm{z}$ at Home and Foreign are res
         \omega = \frac{\bar{z}}{1-\bar{z}} \frac{L^*}{L}
     \end{equation}
     \item For each of the shocks below, consider the implications for the relative wage, the cut-off good, and the real wage in each country.
-    \begin{enumerate}
+    \begin{enumerate}[leftmargin=*]
         \item Identical productivity growth in the two countries: $d \ln T^*=d \ln T=x>0$.
-        \item[Sol.] Note that there is no effect as 
+        \item[\textbf{Sol.}] Note that there is no effect as 
         \begin{equation*}
             d\ln T^*=d\ln T \Longleftrightarrow d\ln\left(\frac{T^*}{T}\right) = 0
         \end{equation*}
         Since the logarithm is an increasing function, this can only happen if the quotient between $T$ and $T^*$ remains unchanged. Thus, $\Psi$ remains constant, and the rest of the equilibrium variables remain.  
         \item Productivity growth at Foreign only: $d \ln T^*=x>0$ and $d \ln T=0$.
-        \item[Sol.] To do comparative statics, it is sufficient to understand the effect of a change in a parameter on $\Psi$. Note that
+        \item[\textbf{Sol.}] To do comparative statics, it is sufficient to understand the effect of a change in a parameter on $\Psi$. Note that
         \begin{align*}
             \frac{\partial \bar{z}}{\partial x} = -\bar{z}^2\frac{\partial\Psi}{\partial x}
         \end{align*}
@@ -98,7 +105,7 @@ and the unit labor requirement for good $\mathrm{z}$ at Home and Foreign are res
         \end{equation*}
         This implies that the $\bar{z}$ effect in $\omega$ is positive. 
         \item Technological convergence: increase in $\theta$ (i.e., decline in dispersion of unit labor requirement).
-        \item[Sol.] Again refer to equation \eqref{ps1:q1:lnPsi} and take the derivative with respect to $\theta$
+        \item[\textbf{Sol.}] Again refer to equation \eqref{ps1:q1:lnPsi} and take the derivative with respect to $\theta$
         \begin{align*}
             \frac{\partial\ln\Psi}{\partial\theta} &= \frac{1}{(1+\theta)^2}\underbrace{\left[\theta\ln\left(\frac{L^*}{L}\right)-\ln\left(\frac{T^*}{T}\right)\right]}_{\Gamma}  \\ 
         \end{align*}
@@ -108,22 +115,19 @@ and the unit labor requirement for good $\mathrm{z}$ at Home and Foreign are res
         \end{equation*}
         and the same logic will carry for $\omega$. 
         \item Income transfer of $D$ from Home to Foreign. That is, total spending at Home is $w L-D$ and at Foreign is $w^* L^*+D$. Starting from the equilibrium with $D=0$, analyze an increase in the transfer of $d D=\Delta>0$.
-        \item[Sol.] For this problem, first, let us write the trade balance condition
-        \begin{equation*}
-            wL-D = \theta(z)\left(wL+w^*L^*\right) = z\left(wL+w^*L^*\right)
-        \end{equation*}
-        \textcolor{red}{Which is the wage that I am supposed to normalize?}
+        \item[\textbf{Sol.}] Following the original paper, the homotheticity in the preferences will not change the results. 
     \end{enumerate}
 \end{enumerate}
-
+\clearpage
 \section{Ricardian model - EK extension}
 Consider the same environment based on EK $(2002)$ seen in class, where we denote a country by $i$ and a good by $j$. In EK, the productivity of country $i$ in good $j, Z_i(j)$, is the realization of a random variable (drawn independently for each $j$ ) from a country specific distribution $P\left[Z_i(j)<z\right]=e^{T_i z^{-\theta}}$. This imposes that the unit labor requirements for each good $j$ are independent across countries.
 \begin{enumerate}
     \item Discuss in a few sentences how realistic this assumption is.
+    \item[\textbf{Sol.}] Seems like the type of assumptions that simplies the model but is shutting down a lot of mechanism like technological spill overs, idea flows amongs others. 
 \end{enumerate}
 Now consider a generalization of the EK model, where the vector of productivity across countries for a given good $j, Z(j) \equiv\left\{Z_i(j)\right\}_{i=1}^N$, is drawn from the following joint distribution (called the Generalized Extreme Value Distribution - see McFadden (1981)):
 \begin{align*}
-P\left[Z_i(j) \leq z_i, i=1, . . N\right]=\exp \left[-G\left(T_1 z_1^{-\theta}, \ldots, T_N z_N^{-\theta}\right)\right] .
+\pr\left[Z_i(j) \leq z_i, i=1, . . N\right]=\exp \left[-G\left(T_1 z_1^{-\theta}, \ldots, T_N z_N^{-\theta}\right)\right] .
 \end{align*}
 The function $G(\cdot)$ is called the correlation function as it controls the correlation in the productivity of different countries for the same good. We assume that it has the following properties (i) $G(\cdot)$ is homogeneous of degree one, (ii) $G\left(x_1, \ldots, x_N\right) \rightarrow \infty$ as $x_0 \rightarrow \infty$ for some 0 , (iii) the derivatives of $G$ exist and are continuous up to order $N$, (iv) for any $\left(i_1, \ldots, i_k\right)$ distinct from $\{1, \ldots, N\}, \partial^k G / \partial i_1 \ldots \partial i_k$ is nonnegative if $k$ is odd and nonpositive if $k$ is even. Note that the distribution is identical to the one in the baseline model derived in class when $G\left(x_1, \ldots, x_N\right)=\sum_{i=1}^N x_i$. Using this distribution, follow the same steps in the lecture notes to extend the EK model.
 \begin{enumerate}
@@ -135,6 +139,20 @@ The function $G(\cdot)$ is called the correlation function as it controls the co
     \begin{align*}
         G_n \equiv G\left(T_1\left(d_{n 1} w_1\right)^{-\theta}, \ldots, T_N\left(d_{n N} w_N\right)^{-\theta}\right)
     \end{align*}
+    \item[\textbf{Sol.}] Begin by noting that the price of good $j$ in country $n$ produced in country $i$ is defined by 
+    \begin{equation*}
+        p_{ni}(j) = \frac{w_id_{ni}}{z_i(j)}
+    \end{equation*}
+    Having this fact in mind, the distribution of prices is
+    \begin{align*}
+        G_n(p) &= \pr\left(p_n(j)\leq p \right) = \pr\left(\min_{i}p_{ni}(j)\leq p \right) \\ 
+        &= \pr\left(p_{n1}(j)\leq p,\cdots,p_{nN}(j)\leq p \right) \\ 
+        &= \pr\left(\frac{w_1d_{n1}}{p}\leq z_1(j),\cdots,\frac{w_Nd_{nN}}{p}\leq z_N(j) \right) \\ 
+        &= 1-\pr\left(z_1(j)\leq \frac{w_1d_{n1}}{p},\cdots,z_N(j)\leq \frac{w_Nd_{nN}}{p}\right) \\ 
+        &= 1-\exp\left(-G(T_1\left(w_1d_{n1}\right)^{-\theta}p^{\theta},\cdots,T_N\left(w_Nd_{nN}\right)^{-\theta}p^{\theta} \right) \\ 
+        &= 1-\exp\left(-p^{\theta}G_n\right) 
+    \end{align*}
+    where the last line is using the fact that $G$ is homogeneous of degree 1 and $p^{\theta}$ is multiplying all the arguments within $G$. 
     \item Show that the share of goods country $n$ purchases from country $i$ is given by
     \begin{align*}
         \pi_{n i}=\frac{T_i\left(d_{n i} w_i\right)^{-\theta} G_{n i}}{G_n}
@@ -143,6 +161,124 @@ The function $G(\cdot)$ is called the correlation function as it controls the co
     \begin{align*}
         G_{n i} \equiv \frac{\partial G\left(T_1\left(d_{n 1} w_1\right)^{-\theta}, \ldots, T_N\left(d_{n N} w_N\right)^{-\theta}\right)}{\partial z_i}
     \end{align*}
+    \item[\textbf{Sol.}] For this exercise I will use the following relation 
+    \begin{equation*}
+        \frac{\partial F(x_1,...,x_n)}{\partial x_i} = F(x_1,...x_{j-1},x_{j+1},...,x_n\vert x_i=x)f_i(x)
+    \end{equation*}
+    where $f_i$ denotes the the density of $x_i$ and $X_1,...,X_n$ are random variable with joint CDF $F$. Using this fact, then the share of goods in country $n$ coming from country $i$ is 
+    \begin{align*}
+        \pi_{ni} &= \pr\left(p_{ni}(j)\leq p_{n\ell}(j),\quad \forall\ell\neq i\right) \\ 
+                 &= \int \pr\left(p\leq p_{n\ell}(j),\quad \forall\ell\neq i\Big\vert p_{ni}(j) = p\right)f_{ni}(p)\mathrm{d}p \\
+                 &= \int \pr\left(z_{n\ell}(j)\leq \frac{w_\ell d_{n\ell}}{p},\quad \forall\ell\neq i\Big\vert p_{ni}(j) = p\right)f_{ni}(p)\mathrm{d}p \\ 
+                 &= \int \frac{\partial}{\partial z_{i}(j)}\pr\left(Z_\ell(j) \leq \frac{w_\ell d_{n\ell}}{p}\right) \mathrm{d}p \\ 
+                 &= \int \exp\left(-G_np^{\theta}\right)G_{ni}\theta T_i\left(d_{ni}w_i\right)^{-\theta} p^{\theta-1}\mathrm{d}p \\
+                 &= T_i\left(d_{ni}w_i\right)^{-\theta}G_{ni}\int \exp\left(-G_np^{\theta}\right)\theta p^{\theta-1}\mathrm{d}p \\
+                 &= \frac{T_i\left(d_{ni}w_i\right)^{-\theta}G_{ni}}{G_n}\int G_n\exp\left(-G_np^{\theta}\right)\theta p^{\theta-1}\mathrm{d}p \\ 
+                 &= \frac{T_i\left(d_{ni}w_i\right)^{-\theta}G_{ni}}{G_n}\int dG_n(p)= \frac{T_i\left(d_{ni}w_i\right)^{-\theta}G_{ni}}{G_n}
+    \end{align*}    
+    where the second to last line uses the fact 
+    \item Show that the price distribution in country $n$ of goods imported from $i$ is given
+    \begin{align*}
+        \pr\left[p_{n i}(j) \leq p \mid p_{n i}(j)=p_n(j)\right]=1-\exp \left[-G_n p^\theta\right] .
+    \end{align*}
+    \item[\textbf{Sol.}] For this exercise we use Bayes Law:
+    \begin{align*}
+    \pr\left(p_{ni}(j) \leq p \vert p_{ni}(j) = p_n(j)\right) &= \pr\left(p_{ni}(j) \leq p \Big\vert p_{ni}(j) \leq \min_{i' \neq i} p_{ni'}(j)\right) \\
+    &= \frac{\pr(p_{ni}(j) \leq p, p_{ni}(j) \leq \min_{i' \neq i} p_{ni'}(j))}{\pr(p_{ni}(j) \leq \min_{i' \neq i} p_{ni'}(j))} \\
+    &= \frac{1}{\pi_{ni}} \pr\left(\frac{d_{ni}w_i}{p} \leq z_i(j), p_{ni}(j) \leq \min_{i' \neq i} p_{ni'}(j)\right) \\
+    &= \frac{1}{\pi_{ni}} \int_{\frac{d_{ni}w_i}{p}}^\infty \pr\left(z_{i'}(j) \leq \frac{d_{ni'}w_{i'}z}{d_{ni}w_i} \Bigg\vert z_i(j) = z\right) f(z) \mathrm{d}z \\
+    &= \frac{1}{\pi_{ni}} \pi_{ni} \int_{\frac{d_{ni}w_i}{p}}^\infty - \exp\left(-\left(\frac{z}{d_{ni}w_i}\right)^{-\theta} G_n \right) \frac{G_n}{(d_{ni}w_i)^{-\theta}} \theta z^{-\theta-1} \mathrm{d}z \\
+    &= 1 - \exp(-G_n p^\theta)
+\end{align*}
+    \item Show that the CES price index is given by
+    \begin{align*}
+        P_n=\gamma\left(G_n\right)^{-\frac{1}{\theta}},
+    \end{align*}
+    where $\gamma \equiv\left[\Gamma\left(1-\frac{\sigma-1}{\theta}\right)\right]^{\frac{1}{1-\sigma}}$ and $\Gamma(\cdot)$ is the gamma function.
+    \item[\textbf{Sol.}] To solve the CES aggregate using the distributions calculated above:
+    \begin{align*}
+    P_n^{1-\sigma} &= \int_0^1 p_n(j)^{1-\sigma} \mathrm{d}j \\
+    &= \int_0^\infty p^{1-\sigma} \mathrm{d}G_n(p) \\
+    &= \int_0^\infty p^{1-\sigma} p^{\theta-1} \theta G_n \exp(-G_n p^\theta) \mathrm{d}p \tag{Let $u = G_n p^\theta$} \\ 
+    &= \int_0^\infty \left(\frac{u}{G_n}\right)^{\frac{1-\sigma}{\theta}} \exp(-u) du \\
+    &= G_n^{-\frac{1-\sigma}{\theta}} \Gamma\left(1-\frac{\sigma-1}{\theta}\right) \\
+     &= G_n^{-\frac{1}{\theta}} \gamma 
+\end{align*}
+    \item Characterize the equilibrium and establish its existence and uniqueness.
+    \item[\textbf{Sol.}] An equilibrium is a set of prices $\{p_n(j),w_i\}_j$ and allocations $\{L_i,X_{ni},c\}$ such that firms and consumers are maximizing, market for labor and production clears and trade is balance. The existence and uniqueness follows directly from class. Consider the excess demand function 
+    \begin{equation*}
+        Z_i(w) = \frac{1}{w_i} \left( \sum_n \frac{G_{ni} T_i (d_{ni} w_i)^{-\theta}}{G_n} w_n L_n  - w_i L_i  \right) 
+    \end{equation*}
+    and just as in class, it satisfies homogeneity of degree 0, continuity, Walras law and any sequence converging to a wage vecor different than 0, with one component equal to zero implies a sequence of unbounded excess demand. Note that the same proff done in class works as $G-{ni}$ is homogeneous of degree 0 by assumption. 
+    \item Derive the normalized bilateral flows, $X_{n i} / X_{n n}$, and its elasticity with respect to $d_{n o}$ for $o \neq i$. How does this elasticity differ from the one implied by the baseline model seen in class?
+    \item[\textbf{Sol.}] The bilateral trade flows (normalized) are determined by the equation 
+    \begin{align*}
+        \frac{X_{ni}/X_n}{X_{ii}/X_i} &= \frac{\pi_{ni}}{\pi_{nn}} 
+        = \frac{\frac{G_{ni}d_{ni}^{-\theta}}{G_n}}{\frac{G_{ii}}{G_i}} \\
+        &= \frac{G_{ni}}{G_{ii}} \left(\frac{P_id_{ni}}{P_n}\right)^{-\theta}
+    \end{align*}
+Note that this is the the same in the baseline model modulus a constant. The constant is capturing the correlation in the productivity draws which did not exist in the baseline model as every draw was independent. 
 \end{enumerate}
+\clearpage
+
+\section{Demand Equivalence}
+Solve the three following utility maximization problems. For all three problems, the goods are indexed by $j=1, \ldots, n$. Let good $j$ be available at price $p_j$. The individual has an income of $y$ to spend on these goods.
+\begin{enumerate}[leftmargin=*,label=\textbf{\arabic*.}]
+    \item Discrete choice with Gumbel. Suppose that the consumer first chooses which good to buy and then the quantity of that good. Let the utility associated with choosing good $j$ be given by $U_j=\ln \left(y / p_j\right)+v_j$, where $v_j$ follows the Gumbel distribution given in equation (3.1) of Train (2009). Derive the probability that the consumer chooses good $j$ and the expected demand of the consumer for good $j$.
+    \item[\textbf{Sol.}] Begin by noting that $U_i$ will yield a higher  utility than good $j$ if 
+    \begin{align*}
+        U_i &\geq U_j & &\Leftrightarrow & \ln\left(\sfrac{y}{p_i}\right) + v_i &\geq \ln\left(\sfrac{y}{p_j}\right) + v_j \\ 
+        & & &\Leftrightarrow & \ln\left(\sfrac{p_j}{p_i}\right) + v_i &\geq v_j
+    \end{align*}
+    Thus, the consumer will choose good $i$ if the utility yielded by good $i$ is higher than any other good. The probability then for the consumer to choose good $i$ is 
+    \begin{align*}
+        \pr\left(U_i\geq U_j,\quad \forall j\neq i\right)&= \pr\left(\ln\left(\sfrac{p_j}{p_i}\right)+v_i \geq v_j,\quad\forall j\neq i\right) \\ 
+        &= \int_{-\infty}^\infty \pr\left(\ln\left(\sfrac{p_j}{p_i}\right)+v_i \geq v_j,\quad\forall j\neq i\vert  v_i \right)f(v_i)\mathrm{d}v_i \\ 
+        &= \int_{-\infty}^\infty \prod_{j\neq i}\pr\left(\ln\left(\sfrac{p_j}{p_i}\right)+v_i \geq v_j\vert  v_i \right)f(v_i)\mathrm{d}v_i \\ 
+        &= \int_{-\infty}^\infty \prod_{j\neq i}\exp\left(-e^{-\ln\left(\sfrac{p_j}{p_i}\right)-v_i}\right)e^{-v_i}\exp\left(-e^{-v_i}\right)\mathrm{d}v_i \\ 
+        &= \int_{-\infty}^\infty \prod_{j=1}^n\exp\left(-e^{-\ln\left(\sfrac{p_j}{p_i}\right)-v_i}\right)e^{-v_i}\mathrm{d}v_i \\ 
+        &= \int_{-\infty}^\infty \prod_{j=1}^n\exp\left(-e^{-\ln\left(\sfrac{p_j}{p_i}\right)}e^{-v_i}\right)e^{-v_i}\mathrm{d}v_i \\ 
+        &= \int_{-\infty}^\infty \exp\left(-e^{-v_i}\sum_{j=1}^ne^{-\ln\left(\sfrac{p_j}{p_i}\right)}\right)e^{-v_i}\mathrm{d}v_i
+    \end{align*}
+    The next step is to use substitution. Let $u=-e^{-v_i}$ then $\mathrm{d}u = e^{-v_i}\mathrm{d}v_i$. Thus the integral becomes
+    \begin{align*}
+        &= \int_{-\infty}^0 \exp\left(u\sum_{j=1}^ne^{-\ln\left(\sfrac{p_j}{p_i}\right)}\right)\mathrm{d}u \\ 
+        &= \exp\left(u\sum_{j=1}^ne^{-\ln\left(\sfrac{p_j}{p_i}\right)}\right)\left(\sum_{j=1}^ne^{-\ln\left(\sfrac{p_j}{p_i}\right)}\right)^{-1}\Bigg\vert_{-\infty}^0 \\ 
+        &= \left(\sum_{j=1}^ne^{-\ln\left(\sfrac{p_j}{p_i}\right)}\right)^{-1} = \frac{p_i}{\sum_{j=1}^n p_j}
+    \end{align*}
+    which does not depend on income. The expected  demand for good $i$ is just $y\pr\left(\text{Choose }i\right)$
+    \item Discrete choice with Frechet. Again, suppose that the consumer first chooses which good to buy and then the quantity of that good. Let the utility associated with choosing good $j$ be given by $U_j=\varepsilon_j y / p_j$, where $\varepsilon_j$ follows the Frechet distribution given by equation (4) of Eaton and Kortum (2002). Derive the probability that the consumer chooses good $j$ and the expected demand of the consumer for good $j$.
+    \item[\textbf{Sol.}] Now consider the Frechet distribution. The CDF is $F(\varepsilon_j) = \exp\left(-T_j\varepsilon_j^{-\theta}\right)$. Given the new utility function, the probability of choosing good $i$ is 
+    \begin{align*}
+        \pr\left(U_i\geq U_j,\quad \forall j\neq i \right) &= \pr\left(\frac{p_j\varepsilon_i}{p_i}\geq \varepsilon_j,\quad\forall j\neq i \right) \\ 
+        &=  \int_{0}^{\infty}\pr\left(\frac{p_j\varepsilon_i}{p_i}\geq \varepsilon_j,\quad\forall j\neq i\bigg\vert \varepsilon_i\right) \mathrm{d}F(\varepsilon_i)\\ 
+        &= \int_{0}^{\infty}\prod_{j\neq i} \exp\left(-T_j\left(\frac{p_j\varepsilon_i}{p_i}\right)^{-\theta}\right) \exp\left(-T_i\varepsilon_i^{-\theta}\right)T_i\theta\varepsilon_i^{-\theta-1}\mathrm{d}\varepsilon_i \\ 
+        &= \int_{0}^{\infty}\prod_{j=1}^n \exp\left(-T_j\left(\frac{p_j}{p_i}\right)^{-\theta}\varepsilon_i^{-\theta}\right) T_i\theta\varepsilon_i^{-\theta-1}\mathrm{d}\varepsilon_i \\ 
+        &= \int_{0}^{\infty}\exp\left(-\varepsilon_i^{-\theta}\sum_{j=1}^nT_j\left(\frac{p_j}{p_i}\right)^{-\theta}\right) T_i\theta\varepsilon_i^{-\theta-1}\mathrm{d}\varepsilon_i
+    \end{align*}
+    Again, let $u=-\varepsilon_i^{-\theta}$. Then $\mathrm{d}u = \theta\varepsilon_i^{-\theta-1}\mathrm{d\varepsilon_i}$. Then 
+    \begin{align*}
+        &= T_i\int_{-\infty}^{0} \exp\left(u\sum_{j=1}^nT_j\left(\frac{p_j}{p_i}\right)^{-\theta}\right) \mathrm{d}u \\ 
+        &= \frac{T_i}{\sum_{j=1}^nT_j\left(\frac{p_j}{p_i}\right)^{-\theta}}= \frac{T_ip_i^{-\theta}}{\sum_{j=1}^nT_jp_j^{-\theta}}
+    \end{align*}
+    The demand will be again the probability of purchasing the good times the income $y$. 
+    \item Constant elasticity of substitution preferences. The consumer's utility function is $U=\left(\sum_j q_j^\rho\right)^{1 / \rho}$ and her budget constraint is $\sum_j q_j p_j \leq y$. Derive the consumer's demand for good $j$.
+    \item[\textbf{Sol.}] This is a more standard maximization problem. The Lagrangian of the problem is 
+    \begin{align*}
+        \mathcal{L} = \left(\sum_{j=1}^n q_j^{\rho}\right)^{\sfrac{1}{\rho}} + \lambda\left(y - \sum_{j=1}^n p_j q_j\right) 
+    \end{align*}
+    The FOC is 
+    \begin{align*}
+        [q_j]&: & \left(U\right)^{1-\rho}q_j^\rho  &= \lambda p_jq_j &
+    \end{align*}
+    Then by using the budget constrain combined with the FOC it follows that
+    \begin{equation*}
+        q_j = \frac{yp_j^{\frac{\rho}{\rho-1}}}{\sum_{i}p_i^{\frac{\rho}{\rho-1}}}
+    \end{equation*}
+    \item Compare and contrast each of the demand system above to the two other demand systems.
+    \item[\textbf{Sol.}] All the systems are roughly the same. The denominator consist on aggregating the prices and the numerator is the contribution of the specific price to the aggregate. Finally, all the demand systems are proportional to income. 
+   
+\end{enumerate}
+ 
 
 \end{document}
