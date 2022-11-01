@@ -80,44 +80,66 @@ where $D_{n}$ is an international transfer such that $\sum_{n=1}^{N} D_{n}=0$. T
 \section{EK extension with multiple sectors and trade in intermediate goods}
 
 We now consider a version of the model in Caliendo and Parro (2015). Our goal is to evaluate how the impact of trade and productivity shocks differs when we allow for trade in intermediate goods.
-\begin{enumerate}
-    \item The first step is to derive the exact hat-algebra version of the non-linear system of equations that determines changes in wages as a function of initial and final levels of import tariffs, $\left(\tau_{n i}^{j, 0}\right.$ and $\left.\tau_{n i}^{j, 1}\right)$, trade cost shocks $\left(\hat{d}_{n i}\right)$, productivity shocks $\left(\hat{T}_{n}\right)$, transfer shocks $\left(\hat{D}_{n}\right)$, parameters $\left\{\gamma_{n}^{j k}, \alpha_{n}^{j}, \theta^{j}\right\}$, and the initial matrix of sector-level trade flows $\left(X_{n i}^{j, 0}\right)$. Specifically, starting from the equilibrium system in the lecture slides, show that
+\begin{enumerate}[label=\roman*., leftmargin=*]
+    \item The first step is to derive the exact hat-algebra version of the non-linear system of equations that determines changes in wages as a function of initial and final levels of import tariffs, $\left(\tau_{n i}^{j, 0}\right.$ and $\left.\tau_{n i}^{j, 1}\right)$, trade cost shocks $\left(\hat{d}_{n i}\right)$, productivity shocks $\left(\hat{T}_{n}\right)$, transfer shocks $\left(\hat{D}_{n}\right)$, parameters $\left\{\gamma_{n}^{j k}, \alpha_{n}^{j}, \theta^{j}\right\}$, and the initial matrix of sector-level trade flows $\left(X_{n i}^{j, 0}\right)$. Specifically, starting from the equilibrium system in the lecture slides show that
 
-(a) The change in the price index solves
+\begin{enumerate}
+    \item The change in the price index solves
 
 \begin{equation*}
-\hat{P}_{n}^{j}=\left(\sum_{i} \pi_{n i}^{j, 0}\left(\hat{\tau}_{n i}^{j}\left(\hat{w}_{i}\right)^{\gamma_{i}^{j}} \Pi_{k}\left(\hat{P}_{i}^{k}\right)^{\gamma_{i}^{k j}}\right)^{-\theta^{j}}\right)^{-1 / \theta^{j}},
+\hat{P}_{n}^{j}=\left(\sum_{i} \pi_{n i}^{j, 0}\left(\hat{\tau}_{n i}^{j}\left(\hat{w}_{i}\right)^{\gamma_{i}^{j}} \Pi_{k}\left(\hat{P}_{i}^{k}\right)^{\gamma_{i}^{kj}}\right)^{-\theta^{j}}\right)^{-1 / \theta^{j}},
 \end{equation*}
-
 where $\hat{\tilde{\tau}}_{n i}^{j}=\left(1+\tau_{n i}^{j, 1}\right) /\left(1+\tau_{n i}^{j, 0}\right)$.
+\item[Sol.] Begin with the equilibrium price formula 
+\begin{equation*}
+    P_n^j = A^j \left( \sum_i \lambda_i^j \left((1+\tau_{ni}) d_{ni}^j\right)^{-\theta^j} \left((w_i)^{\gamma_i^j} \prod_k (P_i^k)^{\gamma_i^{kj}}\right)^{-\theta^j} \right)^{-\frac{1}{\theta^j}} 
+\end{equation*}
+As before, begin by multiplying and dividing by the equilibrium the price index
+\begin{align*}
+    \hat{P}_n^j &= \frac{A^j}{{P_n^j}^0 }\left( \sum_{i=1}^N {\lambda_i^j}^0 \hat{\lambda}_i^j \left(\hat{\tau}_{ni} {\tau_{ni}}^0 {d_{ni}^j}^0 \hat{d}_{ni}^j\right)^{-\theta^j} \left((\hat{w}_i {w_i}^0)^{\gamma_i^j} \prod_k (\hat{P}_i^k {P_i^k}^0)^{\gamma_i^{kj}}\right)^{-\theta^j} \right)^{-\frac{1}{\theta^j}} \\
+    &= \frac{A^j}{A^j\left({{\Phi_n^j}^0}\right)^{-\frac{1}{\theta^j}}} \left( {\Phi^j_n}^0 {\pi_{ni}^j}^0 \sum_i \hat{\lambda}_i^j \left(\hat{\tau}_{ni} \hat{d}_{ni}^j\right)^{-\theta^j} \left((\hat{w}_i )^{\gamma_i^j} \prod_k (\hat{P}_i^k )^{\gamma_i^{kj}}\right)^{-\theta^j} \right)^{-\frac{1}{\theta^j}} \\
+    &= \left( {\pi_{ni}^j}^0 \sum_i \hat{\lambda}_i^j \left(\hat{\tau}_{ni} \hat{d}_{ni}^j\right)^{-\theta^j} \left((\hat{w}_i )^{\gamma_i^j} \prod_k (\hat{P}_i^k )^{\gamma_i^{kj}}\right)^{-\theta^j} \right)^{-\frac{1}{\theta^j}} 
+\end{align*}
 
-(b) The change in the share of spending in sector $j$ of country $n$ on goods from country $i$ is given by
+\item  The change in the share of spending in sector $j$ of country $n$ on goods from country $i$ is given by
 
 \begin{equation*}
 \hat{\pi}_{n i}^{j}=\left(\hat{\tau}_{n i}^{j}\left(\hat{w}_{i}\right)^{\gamma_{i}^{j}} \Pi_{k}\left(\hat{P}_{i}^{k}\right)^{\gamma_{i}^{k j}}\right)^{-\theta^{j}}\left(\hat{P}_{n}^{j}\right)^{\theta^{j}} .
 \end{equation*}
 
-(c) The change in spending in sector $j$ of country $n$ on goods from country $i$ is given by the solution of
+\item[Sol.] I am gonna jump straight ahead into the algebra because this pset is insane a long 
+\begin{align*}
+    \hat{\pi}_{ni}^j &= \frac{\hat{\lambda}_i^j {\lambda_i^j}^0 \left({\tau_{ni}}^0d_{ni}^{j0}\hat{\tau}_{ni}\hat{d}_{ni}^j\right)^{-\theta^j} \left((w_i^0 \hat{w}_i)^{\gamma_i^j} \prod_k (P_i^{k0} \hat{P}_i^k)^{\gamma_i^{k,j}}\right)^{-\theta^j}}{\pi_{ni}^{j0}({P_n^j}^0 \hat{P}_n^j/A^j)^{-\theta^j}} \\
+    &= \frac{\hat{\lambda}_i^j  \left(\hat{\tau}_{ni}\hat{d}_{ni}^j\right)^{-\theta^j} \left((\hat{w}_i)^{\gamma_i^j} \prod_k ( \hat{P}_i^k)^{\gamma_i^{k,j}}\right)^{-\theta^j}}{({ \hat{P}_n^j)^{-\theta^j}}}
+\end{align*}
 
+\item The change in spending in sector $j$ of country $n$ on goods from country $i$ is given by the solution of
 \begin{equation*}
 X_{n i}^{j, 0} \hat{X}_{n i}^{j}=\hat{F}_{n i}^{j}+\pi_{n i}^{j, 0} \hat{\pi}_{n i}^{j} \sum_{k} \sum_{d}\left(\frac{\alpha_{n}^{j} \tau_{n d}^{k, 1}}{1+\tau_{n d}^{k, 1}} X_{n d}^{k, 0} \hat{X}_{n d}^{k}+\frac{\gamma_{n}^{j k}}{1+\tau_{d n}^{k, 1}} X_{d n}^{k, 0} \hat{X}_{d n}^{k}\right),
 \end{equation*}
-
 where
-
 \begin{equation*}
 \hat{F}_{n i}^{j} \equiv \pi_{n i}^{j, 0} \hat{\pi}_{n i}^{j} \alpha_{n}^{j}\left(\left(w_{n}^{0} L_{n}^{0}\right) \hat{w}_{n} \hat{L}_{n}+\left(h\left(w^{0}\right) D_{n}^{0}\right) \frac{h\left(w^{0} \hat{w}\right)}{h\left(w^{0}\right)} \hat{D}_{n}\right)
 \end{equation*}
-
 with $h(w)$ the numeraire of international transfers. Henceforth, we set the numeraire of transfers to be the US wage: $h(w)=w_{\text {US }}$ and $\frac{h\left(w^{0} \hat{w}\right)}{h\left(w^{0}\right)}=\hat{w}_{\text {US. }}$.
 
-(d) The labor market clearing condition is
+\item The labor market clearing condition is
 
 \begin{equation*}
 \hat{w}_{i} \hat{L}_{i}=\sum_{n} \sum_{j} \frac{\gamma_{i}^{j}}{1+\tau_{n i}^{j, 1}} \frac{X_{n i}^{j, 0} \hat{X}_{n i}^{j}}{w_{i}^{0} L_{i}^{0}} .
 \end{equation*}
+\item[Sol.] Labor market clearing is
+\begin{equation*}
+    w_n L_n = \sum_j \gamma_n^j \sum_d \frac{1}{1+\tau_{ni}^k} X_{ni}^k 
+\end{equation*}
+This is a one-trick pony. Multiply and divide to get 
+\begin{equation*}
+    \hat{w}_i \hat{L}_i = \sum_n \sum_j \frac{\gamma_i^j}{1+{\tau_{ni}^j}^1} \frac{{X_{ni}^j}^0 \hat{X}_{ni}^j}{{w_i}^0{L_i}^0}
+\end{equation*}
 
-ii. Download the file "bilateral\_trade\_sector\_country.csv" from the same link. It was again built from the 2014 WIOT Table. The variable trade\_flow2014 is the value of trade flows, $\tilde{X}_{n i}^{j k}$, from an origin sector $j$ and country $i$ (sector\_org and country\_org) to another destination sector $k$ country $n$ (sector\_dest and country\_dest). You can find the list of sectors in "sector\_list.csv".
+\end{enumerate}
+
+\item Download the file "bilateral\_trade\_sector\_country.csv" from the same link. It was again built from the 2014 WIOT Table. The variable trade\_flow2014 is the value of trade flows, $\tilde{X}_{n i}^{j k}$, from an origin sector $j$ and country $i$ (sector\_org and country\_org) to another destination sector $k$ country $n$ (sector\_dest and country\_dest). You can find the list of sectors in "sector\_list.csv".
 
 (a) We calibrate the initial equilibrium tariffs to be zero: $\tau_{n i}^{j, 0}=0$ for all $j$ and $n i$.
 
