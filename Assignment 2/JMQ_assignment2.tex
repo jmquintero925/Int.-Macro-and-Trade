@@ -1,7 +1,7 @@
 \documentclass[12pt,oneside,reqno]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[left=3cm,right=3cm,top=2.5cm,bottom=2.5cm]{geometry}
-\usepackage{amsmath,amsfonts,amssymb,xfrac,xcolor}
+\usepackage{amsmath,amsfonts,amssymb,xfrac,xcolor,placeins,subcaption}
 \usepackage{enumitem}
 \usepackage{fancyhdr}
 \pagestyle{fancy}
@@ -9,9 +9,8 @@
 \newcommand{\pr}{\mathbb{P}\mathrm{r}}
 
 \title{Assignment II}
-\author{Jose M. Quintero}
+\author{Jose M. Quintero\thanks{https://github.com/jmquintero925/Int.-Macro-and-Trade}}
 % \date{October 2022}
-
 %\thanks{I collaborated with Lauren Mostrom}
 
 \lhead{Jose M. Quintero}
@@ -62,6 +61,7 @@ where $D_{n}$ is an international transfer such that $\sum_{n=1}^{N} D_{n}=0$. T
     \end{align*}
     which gives the desire result. 
     \item Download the file ``bilateral\_trade\_country.csv'' from this link. It was built from the 2014 WIOT Table from WIOD 2016 Release. The variable trade\_flow2014 is the value of trade flows, $\tilde{X}_{n i}$, from an origin country $i$ (country\_org) to another destination country $n$ (country\_dest). Use this data to calibrate the matrix of bilateral trade flows between countries in the model, $X_{n i^{\prime}}^{0}$ and compute the vector of income-to-spending ratios, $y_{n}^{0}$.
+    \item[\textbf{Sol.}] See code
     \item Assume that transfers are set in terms of the US wage (i.e., $h(w)=w_{\mathrm{US}}$ ), and set the US wage to be the numeraire (i.e., $w_{\mathrm{US}}^{0}=\hat{w}_{\mathrm{US}}=1$ ). Compute the impact of a $10 \%$ increase in Chinese productivity, $\hat{T}_{\text {China }}=1.1$, on the wage (relative to the US wage) of each country. You can do so with the following iterative algorithm:
     \begin{enumerate}[leftmargin=*,label=\textbf{(\alph*)}]
         \item Consider steps, $b=1, \ldots, B$. Guess that the solution is $\hat{w}_{i}(b=0)=1$ for all $i \neq$ US.
@@ -72,8 +72,24 @@ where $D_{n}$ is an international transfer such that $\sum_{n=1}^{N} D_{n}=0$. T
         where $\kappa^{w}$ is a positive constant. Intuitively, this parameter controls by how much the algorithm increases the wage of countries with demand above supply (i.e., $Z_{i}(\hat{w}(b))>0$ ). The algorithm converges for $\kappa^{w}$ small enough. It should converge in just a few minutes in any computer. You can evaluate if it is converging by checking whether the maximum error in excess demand is shrinking in each step $b$.
     \end{enumerate}
     \item For the shock in item 1.iii, report the changes in the real wage $\left(\hat{w}_{i} / \hat{P}_{i}\right)$ and real expenditure $\left(\hat{X}_{i} / \hat{P}_{i}\right)$ of each country. Run separate regressions of the real wage and the real expenditure on each of the following variables: the change in domestic trade share $\left(\ln \hat{\pi}_{i i}\right)$, the change in market access $\left(\ln \hat{\Phi}_{i}\right)$, and the initial spending share on Chinese goods $\left(\pi_{i \text { China }}^{0}\right)$. Provide a brief intuition for your findings.
-
+    \item[Sol.] The resulst of the regression are presented in table
+    \input{Tables/momentsTab.tex}
+    \FloatBarrier
     \item We now consider the impact of the same shock introduced in item 1.iii, but under the assumption of a different numeraire of international transfers, while maintaining the US wage as the world economy's numeraire. Specifically, assume that transfers are set in terms of the Chinese wage $h(w)=w_{\text {China }}$, so that $\frac{h\left(w^{0} \hat{w}\right)}{h\left(w^{0}\right)}=\hat{w}_{\text {China }}$ and set the US wage to one, $w_{\mathrm{US}}^{0}=\hat{w}_{\mathrm{US}}=1$. Compare the implied changes in the real wage and real expenditure to those obtained in item \textbf{1.iii}. Provide a brief explanation for why some countries gain more while others gain less. Your answer should be backed by features of the data.
+    \item[Sol.] The comparison is
+    \begin{figure}[htb]
+    \centering
+    \caption{Wages}
+    \label{hw2:fig2}
+    \begin{subfigure}[b]{0.47\textwidth}
+            \includegraphics[width=\textwidth]{Figures/w_hat.pdf}
+            \caption{US numeraire}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.47\textwidth}
+            \includegraphics[width=\textwidth]{Figures/w_hat2.pdf}
+            \caption{China Numeraire}
+        \end{subfigure}
+\end{figure}
 \end{enumerate}
 \clearpage
 
@@ -140,24 +156,35 @@ This is a one-trick pony. Multiply and divide to get
 \end{enumerate}
 
 \item Download the file "bilateral\_trade\_sector\_country.csv" from the same link. It was again built from the 2014 WIOT Table. The variable trade\_flow2014 is the value of trade flows, $\tilde{X}_{n i}^{j k}$, from an origin sector $j$ and country $i$ (sector\_org and country\_org) to another destination sector $k$ country $n$ (sector\_dest and country\_dest). You can find the list of sectors in "sector\_list.csv".
+\begin{enumerate}
+    \item We calibrate the initial equilibrium tariffs to be zero: $\tau_{n i}^{j, 0}=0$ for all $j$ and $n i$.
 
-(a) We calibrate the initial equilibrium tariffs to be zero: $\tau_{n i}^{j, 0}=0$ for all $j$ and $n i$.
+\item Compute $X_{n i}^{j, 0}$ as the sum of the trade flows in 2014 for each country pair $n i$ and sector $j: X_{n i}^{j, 0}=\sum_{k} \tilde{X}_{n i}^{j k}$. Use trade flows to compute spending shares, $\pi_{n i}^{j, 0}=$ $X_{n i}^{j, 0} / \sum_{o} X_{n o}^{j, 0}$
 
-(b) Compute $X_{n i}^{j, 0}$ as the sum of the trade flows in 2014 for each country pair $n i$ and sector $j: X_{n i}^{j, 0}=\sum_{k} \tilde{X}_{n i}^{j k}$. Use trade flows to compute spending shares, $\pi_{n i}^{j, 0}=$ $X_{n i}^{j, 0} / \sum_{o} X_{n o}^{j, 0}$
-
-(c) Compute $\gamma_{n}^{j k}$ as the ratio between the purchases of sector $k$ in country $n$ on goods of sector $j$ (from all origin countries) and the total revenue of sector $k$ in country $n: \gamma_{n}^{j k}=\sum_{i} \tilde{X}_{n i}^{j k} / \sum_{i} X_{i n}^{k, 0}$. If the output of sector $k$ in country $n$ is zero, impute $\gamma_{n}^{j k}$ for that sector-country as the average $\gamma_{i}^{j k}$ across other countries $i$. Note that this imputation is not important, since it will not affect results. Report a heat map of the average spending shares across sectors, $\bar{\gamma}^{j k} \equiv \frac{1}{N} \sum_{n=1}^{N} \gamma_{n}^{j k}$. What sectors seem to be more important sources of inputs?
-
-(d) Define $\gamma_{n}^{k} \equiv 1-\sum_{j=1}^{J} \gamma_{n}^{j k}$. Report a histogram of the share of value-added in production. What are the sectors with the highest and lowest average valueadded shares across countries?
-
-(e) Use the factor market clearing condition to compute value-added in the initial equilibrium:
+\item Compute $\gamma_{n}^{j k}$ as the ratio between the purchases of sector $k$ in country $n$ on goods of sector $j$ (from all origin countries) and the total revenue of sector $k$ in country $n: \gamma_{n}^{j k}=\sum_{i} \tilde{X}_{n i}^{j k} / \sum_{i} X_{i n}^{k, 0}$. If the output of sector $k$ in country $n$ is zero, impute $\gamma_{n}^{j k}$ for that sector-country as the average $\gamma_{i}^{j k}$ across other countries $i$. Note that this imputation is not important, since it will not affect results. Report a heat map of the average spending shares across sectors, $\bar{\gamma}^{j k} \equiv \frac{1}{N} \sum_{n=1}^{N} \gamma_{n}^{j k}$. What sectors seem to be more important sources of inputs?
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.7\textwidth]{Assignment 2/Figures/heatmap-ic.pdf}
+    \caption{Heat Map}
+\end{figure}
+\FloatBarrier
+\item Define $\gamma_{n}^{k} \equiv 1-\sum_{j=1}^{J} \gamma_{n}^{j k}$. Report a histogram of the share of value-added in production. What are the sectors with the highest and lowest average valueadded shares across countries?
+\item[Sol.] \begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.45\textwidth]{Assignment 2/Figures/pdf-id.pdf}
+    \caption{PDF}
+\end{figure}
+\FloatBarrier
+\item Use the factor market clearing condition to compute value-added in the initial equilibrium:
 
 \begin{equation*}
 w_{i}^{0} L_{i}^{0}=\sum_{n} \sum_{j} \frac{\gamma_{i}^{j}}{1+\tau_{n i}^{j, 0}} X_{n i}^{j, 0}
 \end{equation*}
 
 Note that this procedure guarantees that the factor market clearing condition holds in the initial equilibrium.
+\item[Sol.] \textcolor{blue}{See code}
 
-(f) Use the good market clearing condition in the initial equilibrium to show that you can compute international transfers as
+\item Use the good market clearing condition in the initial equilibrium to show that you can compute international transfers as
 
 \begin{equation*}
 h\left(w^{0}\right) D_{n}^{0}=\sum_{k} \sum_{d} \frac{X_{n d}^{k, 0}}{1+\tau_{n d}^{k, 0}}-\sum_{k} \sum_{d} \frac{X_{d n}^{k, 0}}{1+\tau_{d n}^{k, 0}} .
@@ -166,16 +193,19 @@ h\left(w^{0}\right) D_{n}^{0}=\sum_{k} \sum_{d} \frac{X_{n d}^{k, 0}}{1+\tau_{n 
 Report a histogram of international transfers as a share of value-added, $h\left(w^{0}\right) D_{n}^{0} / w_{n}^{0} L_{n}^{0}$.
 
 What are the countries with the highest and lowest transfer-to-income ratio?
+\item[Sol.] \textcolor{blue}{See code}
 
-(g) Finally, use again the good market clearing condition to show that you can calibrate final spending shares as
+\item Finally, use again the good market clearing condition to show that you can calibrate final spending shares as
 
 \begin{equation*}
 \alpha_{n}^{j}=\frac{\sum_{i} X_{n i}^{j}-\sum_{k} \sum_{d}\left(\frac{\gamma_{n}^{j k}}{1+\tau_{d n}^{k, 0}} X_{d n}^{k, 0}\right)}{w_{n}^{0} L_{n}^{0}+R_{n}^{0}+h\left(w^{0}\right) D_{n}^{0}}
 \end{equation*}
 
 where $R_{n}^{0}=\sum_{i} \sum_{k} \frac{\tau_{n i}^{k, 0}}{1+\tau_{n i}^{k, 0}} X_{n i}^{k, 0}$ is the initial tariff revenue. Note that this procedure guarantees that the good market clearing condition holds in the initial equilibrium. Compute the average spending shares across sectors, $\bar{\alpha}^{j}=$ $\frac{1}{N} \sum_{n=1}^{N} \alpha_{n}^{j}$. What sectors seem to be more important for final consumption?
+\item[Sol.] \textcolor{blue}{See code}
 
-(h) Calibrate $\theta^{j}$ using the values in Caliendo and Parro (2015). If a sector is not in their list, set the parameter to the average across sectors reported in the last row of their main table of estimates.
+\item Calibrate $\theta^{j}$ using the values in Caliendo and Parro (2015). If a sector is not in their list, set the parameter to the average across sectors reported in the last row of their main table of estimates.
+\end{enumerate}
 
 iii. Implement the following algorithm to compute counterfactual exercises.
 
