@@ -205,7 +205,7 @@ mat list table1
 * Export matrix as table
 frmttable using "Tables/table1", tex replace s(table1) sd(3) sub(1) hlines(101{0}1001) fragment /// Table, decimals, sub for std in parenthesis and horizontal lines
 ctitles("", "log(Flows)", "", "", "" \"Dependent", "(1)", "(2)", "(3)", "(4)" \ "\textit{Panel A: Distance in Google Miles}", "", "", "", "") /// Column titles
-    multicol(1,2,4;3,1,5;7,1,5) /// Multicolumn (row, starting column, how much columns to combine; )
+    multicol(1,2,4;3,1,5;9,1,5) /// Multicolumn (row, starting column, how much columns to combine; )
 	rtitles("Distance" \ "" \ "$ R^2$" \ "$ N$" \ "Time (Seconds)" \ "\textit{Panel B: Distance in Google Minutes}" \ "Distance" \ "" \ "$ R^2$" \ "$ N$" \ "Time (Seconds)" \ "") ///
 	addrow("Origin FE","Y","Y","Y","Y" \ "Destination FE","Y","Y","Y","Y" \ "Stata Command.","reg","xtreg", "aref","reghdfe") ///
 	annotate(stars) asymbol("$ ^*$", "$ ^{**}$", "$ ^{***}$")
@@ -429,4 +429,14 @@ ctitles("", "$ F$(Flows)", "", "", "", "", "", ""," "\"Dependent", "(1)", "(2)",
 	addrow("Origin FE","Y","Y","Y","Y","Y","Y","Y","Y" \ "Destination FE","Y","Y","Y","Y","Y","Y","Y","Y") ///
 	annotate(`stars2') asymbol("$ ^*$", "$ ^{**}$", "$ ^{***}$")
 
+
+* Last regression 
+
+timer clear
+
+timer on 1
+reghdfe ln_flows ln_distance_google_miles, absorb(work_id home_id) vce(r) 
+timer off 1
+
+timer list 
 
