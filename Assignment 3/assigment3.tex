@@ -1,0 +1,76 @@
+\documentclass[12pt,oneside,reqno]{amsart}
+\usepackage[utf8]{inputenc}
+\usepackage[left=3cm,right=3cm,top=2.5cm,bottom=2.5cm]{geometry}
+\usepackage{amsmath,amsfonts,amssymb,xfrac,enumitem,xcolor,placeins}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\newcommand{\pr}{\mathbb{P}\mathrm{r}}
+
+\title{Assignment III}
+\author{Jose M. Quintero}
+% \date{October 2022}
+
+\lhead{Jose M. Quintero}
+\rhead{Int. Macro and Trade.} 
+
+\begin{document}
+
+\maketitle 
+
+\section{Log-Linear Estimation}\footnote{Replication files are here: https://github.com/jmquintero925/Int.-Macro-and-Trade}
+The table is presented 
+\begin{table}[htb]
+    \caption{Log-lin regression}
+    \label{tab:my_label}
+    \input{Assignment 3/Tables/table1.tex}
+\end{table}
+
+\begin{enumerate}[leftmargin=*,label=\textbf{(\roman*)}]
+    \item Are the point estimates and standard errors numerically identical across the different estimators? Should they be?
+    \item[\textbf{Sol}] Yes, they are, and they should be, as the identification is the same. 
+    \item Are the number of observations and R-squared statistics identical? Should they be?
+    \item[\textbf{Sol.}] The number of observations is all the same, but the $R^2$ is not. It is only different with the function \textit{xtreg}. In principle, it should all be the same
+    \item Compare the relative computation times of these estimators.
+    \item[\textbf{Sol.}] Computational time decreases as we move to the right in the table. This makes sense given that in the last column, we do not include fixed effects forced (using i. command). 
+    \item Are the coefficients on the distance and time covariates the same? Should they be?
+    \item[\textbf{Sol.}] No they are not and they should not be as the units are very different and thus the elasticity implied should be different, 
+\end{enumerate}
+
+\clearpage
+\section{Zeros}
+
+\begin{table}[htb]
+    \caption{Zeros}
+    \label{tab:my_label}
+    \resizebox{\textwidth}{!}{
+    \input{Assignment 3/Tables/table2.tex}
+    }
+\end{table}
+
+\begin{enumerate}[leftmargin=*,label=\textbf{(\roman*)}]
+    \item Are your results sensitive to the omission of zeros?
+    \item[\textbf{Sol.}] Not very much. The level of the coefficient transformed by a logarithm and a constant is expected to be different. To argue this, notice that a first-order Taylor approximation is centering the function around a different point and the slope of the line needs to account for that. Thus the results become harder to interpret. Note that centered around 1, $\ln(x)\approx (x-1)$ whereas $\ln(x+1)\approx x$ when centered around 0. this explains the changes in level. This is, however, minimal (see columns 1 and 3). This approximation becomes harder for the normalization in column 4as some observations near 0 are gonna drag the estimation results. The interpretability of the coefficient becomes harder, though. 
+    \item How well does transforming the dependent variable to be $\log (x+1), \log (x+0.01)$, or $\log \left(1 e^{-10} X_{j j}\right)$ if zero work? Is the result sensitive to the choice of transformation?
+    \item[\textbf{Sol.}] See the answer above. 
+    \item Examine the residuals from your log-linear regression. Are they heteroskedastic? Report a Breusch-Pagan test statistic and a scatterplot of the residuals that addresses this question.
+    \item[\textbf{Sol.}] The Breusch-Pagan test strongly rejects the null, implying there is heteroskedasticity. This can also be seen in the plot. 
+    \item How do the computation times compare?
+    \item[\textbf{Sol.}] Naturally, excluding the zeros increases computational speed. The Poisson regressions also increase the computational time, but by the end is within an acceptable range. 
+\end{enumerate}
+
+\clearpage 
+\section{Comparing Languages}
+\begin{table}[htb]
+    \caption{Languages}
+    \input{Assignment 3/Tables/table3.tex}
+\end{table}
+
+\begin{enumerate}[leftmargin=*,label=\textbf{(\roman*)}]
+    \item Verify that 'reghdfe', 'FixedEffectModels', and 'fixest' return identical point estimates. Are the standard errors identical?
+    \item[\textbf{Sol.}] Yes they are. 
+    \item Which estimator is faster? By what magnitude?
+    \item[\textbf{Sol.}] R is the faster estimation but is basically the same as Julia. Stata is slower by almost a factor of 6 (Jesus). 
+\end{enumerate}
+
+\end{document}
