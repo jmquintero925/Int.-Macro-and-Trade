@@ -1,0 +1,311 @@
+\documentclass[12pt,oneside,reqno]{amsart}
+\usepackage[utf8]{inputenc}
+\usepackage[left=3cm,right=3cm,top=2.5cm,bottom=2.5cm]{geometry}
+\usepackage{amsmath,amsfonts,amssymb,xfrac,enumitem,xcolor}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\newcommand{\pr}{\mathbb{P}\mathrm{r}}
+\newcommand{\E}{\mathbb{E}}
+
+
+\title{Final Exam}
+\author{Jose M. Quintero}
+
+\lhead{Jose M. Quintero}
+\rhead{Int. Macro and Trade.} 
+
+\begin{document}
+
+\maketitle 
+
+\section{Trade and Labor Markets}
+
+This question walks you through a Roy-Ricardian model of selection of heterogeneous workers into different sectors and asks you to use this model to rationalize the recent evidence regarding the impact of trade shocks on regional labor markets.
+
+Consider a small open economy $r$ with multiple sectors $s=1, \ldots, S$. Let $p_{s}$ be the price of the sector $s$ good, which is exogenously determined in the world economy. Each region $r$ is populated by a continuum of workers $j \in[0,1]$ that differ with respect to their efficiency when employed in each sector. Specifically, if worker $j$ is employed in sector $s$, then her labor supply is $z_{s}(j)$ and her income is $w_{r, s} z_{s}(j)$ with $w_{r, s}$ denoting the wage per efficiency labor unit in sector $s$ of region $r$. Each worker draws $z_{s}(j)$ independently from a Frechet distribution: $\pr\left[z_{s}(j) \leq z\right]=G(z) \equiv \exp \left(-z^{-\theta}\right)$ with $\theta>1$
+
+We further assume that each region-sector pair has a competitive representative firm with a production function that is linear on efficiency labor units, so that $w_{r, s}=A_{r, s} p_{s}$ where $A_{r, s}$ is a region-sector productivity parameter. Finally, we assume that all individuals have identical Cobb-Douglas preferences with spending shares $\alpha_{s}>0$, so that the consumption price index in every region is $P=\Pi_{s}\left(p_{s}\right)^{\alpha_{s}}$.
+
+\subsection{Equilibrium}
+
+Assume that labor markets are competitive, so that workers take the wage per efficiency unit as given. Worker $j$ maximizes her utility by her choice of sector:
+
+\begin{equation*}
+\max _{e_{s} \in\{0,1\}, \sum_{s} e_{s}=1} \frac{w_{r, s} z_{s}(j)}{P} e_{s}
+\end{equation*}
+
+In words, each worker $j$ self-selects to work in the sector that yields the highest real labor income. We now ask you to derive the employment and wage distributions in the equilibrium of this economy.
+\begin{enumerate}[leftmargin=15pt,label=\textbf{\roman*.}]
+    \item Show that the regional distribution of wages, $G_{r}(w)=\pr\left[w_{r}(j) \leq w\right]$ where $w_{r}(j) \equiv$ $\max _{k}\left\{w_{r, k} z_{k}(j)\right\}$, is given by
+        \begin{equation*}
+        G_{r}(w)=\exp \left(-\Phi_{r} w^{-\theta}\right) \quad \text { with } \quad \Phi_{r} \equiv \sum_{s} w_{r, s}^{\theta} .
+        \end{equation*}
+    \item[\textbf{Sol.}] This is a standard Frechet result:
+    \begin{align*}
+        G_r(w) &= \pr\left[w_r(j)\leq w\right] = \pr\left[\max_{k}w_{r,k}z_k(j)\leq w\right] \\ 
+        &= \pr\left[w_{r,k}z_k(j)\leq w \quad\forall k\right] \\ 
+        &= \prod_{s}\pr\left[w_{r,s}z_s(j)\leq w \right] \tag{Independence of $z$} \\ 
+        &= \prod_{s}\pr\left[z_s(j)\leq \frac{w}{w_{r,s}} \right] 
+        = \prod_{s}\exp\left(-\left(\frac{w}{w_{r,s}}\right)^{-\theta} \right) \\
+        &= \exp\left(-\sum_{s}\left(\frac{w}{w_{r,s}}\right)^{-\theta} \right) 
+        = \exp\left(-w^{-\theta}\sum_{s} w_{r,s}^{\theta} \right) \\
+        &=\exp \left(-\Phi_{r} w^{-\theta}\right)
+    \end{align*}
+    \item Show that the share of employment in sector $s$ in region $r, \pi_{r, s}=\pr\left[s=\arg \max _{k}\left\{w_{r, k} z_{k}(j)\right\}\right]$, is given by
+    \begin{equation*}
+        \pi_{r, s}=\frac{w_{r, s}^{\theta}}{\Phi_{r}}
+    \end{equation*}
+    \item[\textbf{Sol.}] Again this result is going to leverage the independence of the draws: 
+    \begin{align*}
+        \pi_{r,s} &= \pr\left[s=\arg \max _{k}\left\{w_{r, k} z_{k}(j)\right\} \right]  \\ 
+        &= \pr\left[\max_{k\neq s}w_{r,k}z_k(j)\leq w_{r,s}z_s(j) \right] \\ 
+        &= \prod_{k\neq s}\pr\left[w_{r,k}z_k(j)\leq w_{r,s}z_s(j) \right] \\ 
+        &= \int \prod_{k\neq s}\pr\left[w_{r,k}z_k(j)\leq w_{r,s}z \right]\mathrm{d}G(z) \\
+        &= \int \prod_{k\neq s}G\left(\frac{w_{r,s}z}{w_{r,k}}\right)\mathrm{d}G(z) \\
+        &= \int \exp\left(-\sum_{k\neq s}\left(\frac{w_{r,s}z}{w_{r,k}}\right)^{-\theta}\right)\mathrm{d}G(z) \\
+        &= \int \theta z^{-\theta-1}\exp\left(-\sum_{k}\left(\frac{w_{r,s}z}{w_{r,k}}\right)^{-\theta}\right)\mathrm{d}z \\
+        &= \int \theta z^{-\theta-1}\exp\left(-\Phi_{r}\left(w_{r,s}z\right)^{-\theta}\right)\mathrm{d}z \\
+    \end{align*}
+    which yields the desired result by doing the change of variable $u=w_{r,s}z$ and solving the integral. 
+    \item Show that the distribution of regional wages of workers employed in every sector $s$, $G_{r, s}(w) \equiv \pr\left[w_{r}(j) \leq w \mid s=\arg \max _{k}\left\{w_{r, k} z_{k}(j)\right\}\right]$, is given by
+    \begin{equation*}
+        G_{r, s}(w)=G_{r}(w).
+    \end{equation*}
+    \item[\textbf{Sol.}] Here, it is an application of Bayes law
+    \begin{align*}
+        G_{r, s}(w) &= \pr\left[w_{r}(j) \leq w \bigg\vert w_r(j)=w_{r,s}z_s(j)\right] \\ 
+                    &= \frac{\pr\left(w_{r}(j) \leq w,\quad w_r(j)=w_{r,s}z_s(j)\right)}{\pr\left(w_r(j)=w_{r,s}z_s(j) \right)} \\ 
+                    &= \frac{1}{\pi_{r,s}}\pr\left(w_{r}(j) \leq w,\quad w_r(j)=w_{r,s}z_s(j)\right) \\ 
+                    &= \frac{1}{\pi_{r,s}}\pr\left(w_{r}(j) \leq w\right)\pr\left( w_r(j)=w_{r,s}z_s(j)\right) \\
+                    &= \pr\left(w_{r}(j) \leq w\right)=G_r(w)
+    \end{align*}
+    \item Show that the average wage in each sector is, $\bar{W}_{r, s}=\mathbb{E}\left[w_{r}(j) \mid s=\arg \max_{k}\left\{w_{r, k} z_{k}(j)\right\}\right]$, is given by
+    \begin{equation*}
+        \bar{W}_{r, s}=\gamma \Phi_{r}^{1 / \theta} .
+    \end{equation*}
+    where $\gamma \equiv \Gamma(1-1 / \theta)$ with $\Gamma(\cdot)$ denoting the gamma function.
+    \item[\textbf{Sol.}] For this question, I leverage the previously shown result where the wage distribution in a specific sector is the same as the distribution in the economy $r$. Thus
+    \begin{align*}
+        \overline{W}_{r,s} &= \E\left[w_r(j)\bigg\vert s=\arg \max_{k}\left\{w_{r, k} z_{k}(j)\right\} \right] \\ 
+                           &= \int w\mathrm{d}G_{r,s}(w) 
+                           = \int w\mathrm{d}G_r(w) \\ 
+                           &= \int \Phi_r\theta w^{-\theta}\exp\left(-\Phi_r w^{-\theta}\right)\mathrm{d}w \\ 
+                           &= \int w \exp(-x)\mathrm{d}x = \int \left(\frac{\Phi_r}{x} \right)^{\frac{1}{\theta}} \exp(-x)\mathrm{d}x \\ 
+                           &= \gamma\Phi_r^{\sfrac{1}{\theta}}
+    \end{align*}
+    \item Show that the regional average real wage, $\omega_{r} \equiv \mathbb{E}\left[w_{r}(j)\right] / P$, is given by
+    \begin{equation*}
+        \omega_{r}=\gamma \frac{\left(\sum_{s}\left(A_{r, s} p_{s}\right)^{\theta}\right)^{\frac{1}{\theta}}}{\Pi_{s}\left(p_{s}\right)^{\alpha_{s}}}
+    \end{equation*}
+    \item[\textbf{Sol.}] This is just an application of the previous results:
+    \begin{align*}
+        \omega_r &= \frac{1}{P}\E[w_r(j)] = \frac{\gamma\Phi_r^{\sfrac{1}{\theta}}}{P} \\ 
+        &= \frac{\gamma\Phi_r^{\sfrac{1}{\theta}}}{\prod_s p_s^{\alpha_s}} \\ 
+        &= \frac{\gamma}{\prod_s p_s^{\alpha_s}} \left(\sum_sw_{r,s}^{\theta}\right)^{\sfrac{1}{\theta}} \\ 
+        &= \frac{\gamma}{\prod_s p_s^{\alpha_s}} \left(\sum_s(A_{r,s}p_s)^{\theta}\right)^{\sfrac{1}{\theta}}
+    \end{align*}
+\item Discuss the role that $\theta$ plays in the model and how this is connected to the fundamental distribution of labor efficiency units.
+\item[\textbf{Sol.}] $\theta$ is controlling the dispersion of labor efficiency within a sector. 
+\end{enumerate}
+
+\subsection{Comparative Statics}
+
+We now consider the impact of shocks to world good prices. We use a ``hat" to denote the log-change in a variable, $\hat{x} \equiv \mathrm{d} \ln x$. We assume now that sector $s=1$ represents home production, so that individuals selecting into $s=1$ are "non-employed" in the data. To simplify the analysis, we normalize the $\hat{w}_{r, 1}=0$ and $\alpha_{1}=0$ in every region $r$.
+
+\begin{enumerate}[leftmargin=15pt,label=\textbf{\roman*.}]
+\item Use a first-order approximation of the expressions for $\pi_{r, 1}$ and $\bar{W}_{r}$ derived above to show that the log-change in the share of non-employed individuals and average wages are given by
+
+\begin{equation*}
+\begin{gathered}
+\hat{\pi}_{r, 1}=-\theta \sum_{s=2}^{S} \pi_{r, s} \hat{p}_{s} \\
+\hat{\bar{W}}_{r}=\sum_{s=2}^{S} \pi_{r, s} \hat{p}_{s}
+\end{gathered}
+\end{equation*}
+
+\item[\textbf{Sol.}] By log linerarizing the equation of shares it follows
+\begin{align*}
+    \hat{\pi}_{}
+\end{align*}
+
+\item Suppose that you observe a proxy for world price shocks driven by a trade shock of interest (e.g., Chinese import growth or tariff changes) such that $\hat{p}_{s}=\rho \hat{X}_{s}+\nu_{s}$.
+\begin{enumerate}[label=(\alph*)]
+    \item Derive an empirical specification to estimate $\theta$ and $\rho$. Briefly discuss the main identification assumption necessary for the causal interpretation of this empirical specification, and how you would implement the estimation of this specification. 
+    \item[\textbf{Sol.}] This is basically a Bartic instrument and thus the regression should be as the one where the China shock is studied.  
+    \item Use this specification to briefly summarize in one paragraph the findings in Autor, Dorn, and Hanson (2013) and Dix-Carneiro and Kovak (2017).
+\end{enumerate}
+\item Describe how you can use the estimates from the strategy in 2 .a to measure the real wage change caused by $\hat{X}_{s}$ in each region $r$. Be specific about which additional data you need.
+
+\item Can you provide an intuition for why the change in the average wage is the same in every sector? Does this imply that workers employed in different sectors are equally affected by the shock? 
+\end{enumerate}
+
+\clearpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Remote work}
+
+Please think through the consequences of remote work for both inter-city and intra-city distributions of economic activity using the tools from weeks 7 and 8. Assume homogeneous workers and pretend that all jobs can be done remotely.
+\begin{enumerate}[label=\textbf{\roman*.}]
+    \item Use the Rosen-Roback model to think through the incidence of a shift to remote work. Assume all workers are homogeneous. Assume that the Rosen-Roback model describes the pre-pandemic equilibrium. After the pandemic, all work can be done remotely. That is, individuals may now choose separate residential locations and workplace locations, supplying labor to an employer that is in a different city than where they consume and pay their rent.
+    \begin{itemize}
+        \item Starting from the Rosen-Roback model presented in the week 7 slides, modify the model so that an individual chooses an employment city and a residential city. Introduce appropriate notation to handle the choice of a pair of locations.
+        \item[\textbf{Sol.}] Begin by describing the utility of the agent $u(x,l,s)$ just as in the model. Now lets assume that the private good is freely tradable so that it can be consumed for the same price anywhere. Use the subindex $h$ to denote residency and $\ell$ the working city. Moreover, let $\lambda$ be the multiplier of the budget restriction. The indirect utility of the agent is 
+        \begin{equation*}
+            v(r_h,s_h) = \max_{\ell} V(w_\ell,r_h,s_h)
+        \end{equation*}
+        where $V(w_\ell,r_h,s_h)=\max_{x,l}u(x,l,s_h) + \lambda\left(x+r_hl-w_\ell-I \right)$. Now $v$ has to equalize across residential cities. Now I'm nesting two problems and should have two nested fix points problems. 
+        \item Describe the incidence of remote work on land prices as a function of locational fundamentals, as they can be inferred from pre-pandemic equilibrium outcomes. What happens to the wages and rent in different types of cities?
+        \item[\textbf{Sol.}] Now, amenities are going to be the main driver of land prices. Note that the decision of the firm will not change, but now amenities will act as a gravity pole for workers as the decision of wages is now separated from the city. 
+        \item Discuss how your answers depend on whether all land is owned by "absentee landlords" who rent it out or if housing is owner-occupied.
+        \item[\textbf{Sol.}] This is an important assumption because if instead of an absentee landlord, we had a local government that transfers back the rents, then it is not clear that the model actually has a fixed point. Note that cities with better amenities will also have more people, and thus the transfer will also be higher. 
+\end{itemize}
+
+\item Use the Ahlfeldt, Redding, Sturm, Wolf (2015) model of Berlin to think through the intra-city incidence of a shift to remote work. Suppose Berlin is the only city in the economy.
+\begin{itemize}
+    \item Describe how you would modify the model's parameters and functions when individuals can work remotely. What needs to change in order to describe remote work?
+    \item[\textbf{Sol.}] Lets keep the model as it is but add the option to work remotely. For that particular case, there are no commuting costs but the agent has to pay a fix cost. Interpret this as the cost to adjust home for working (desk, multiple screens etc). Then the consumer utility is
+    \begin{equation*}
+        U_{ij\omega} = \max\left\{\frac{B_iz_{ij\omega}}{d_{ij}}\left(\frac{c_{ij}}{\beta}\right)^{\beta}\left(\frac{\ell_{ij}}{1-\beta}\right)^{1-\beta},B_iz_{ij\omega}\left(\frac{c_{ij}}{\beta}\right)^{\beta}\left(\frac{\ell_{ij}}{1-\beta}\right)^{1-\beta}-f\right\}
+    \end{equation*}
+    Now very distant locations can become more attractive for workers because commuting costs can be avoided by paying the fixed costs. 
+    \item Describe the incidence of remote work on land prices as a function of locational fundamentals and geography. How are your answers similar to or different than those in the Rosen-Roback thought experiment?
+    \item[\textbf{Sol.}] Now, land prices will also depend on the fixed cost. I am going for a very Melitz mechanism where neighborhoods with high amenities will be sorted to the residence but now there is a threshold for where it becomes optimal for firms to set their head quarters even if they are far away from residential neighborhoods. 
+\end{itemize}
+\item Now assume that there are multiple skill groups (at minimum, two: high-skilled vs low-skilled). Before the pandemic, all work was done on-site. After the pandemic, more skill-intensive occupations can be performed remotely. Without writing out a complete model, sketch how your answers to the two previous questions would be altered by considering skill heterogeneity. - Describe how quantities and wages of these different skill groups varied across and within cities prior to the pandemic. Discuss the implications or identification challenges for the inferred locational fundamentals.
+\begin{itemize}
+    \item Describe how skill-intensive occupations "going remote" after the pandemic affects the spatial distributions of skill, wages, and land prices. Emphasize contrasts with the homogeneous-workers scenarios you described in the first two parts of this question. 
+    \item[\textbf{Sol.}] Now, human capital will be concentrated in residential neighborhoods with high amenities, and the firm that employs those will set HQ in further locations. Think of Microsoft and Google setting their HQ in Bellevue even though most of their high-skill payroll lives in Seattle. The low-skill workers in these companies cannot afford to pay the high land price in Seattle (driven up by amenities and the high demand of high skill workers). 
+\end{itemize}
+
+\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+\section{Firms, gravity, and gains from trade}
+
+This question asks to derive an expression for bilateral trade flows and gains from trade in a version of the Melitz model seen in class under the assumption that the distribution of firm productivity is Pareto, as in Chaney (2008).
+
+Consider a world economy with $N$ countries. We use $i$ to denote an origin country, and $j$ to denote a destination country. In each country, preferences and production are identical to those introduced in the Melitz model described in Lecture 10. In particular, the revenue and profit that a firm with productivity $\varphi$ from $i$ gets if it decides to sell in country $j$ are given by
+
+\begin{equation*}
+r_{i j}(\varphi)=\left(\frac{\sigma}{\sigma-1} \frac{\tau_{i j} w_{i}}{\varphi}\right)^{1-\sigma} \frac{w_{j} L_{j}}{\left(P_{j}\right)^{1-\sigma}} \quad \text { and } \quad \pi_{i j}(\varphi)=\frac{1}{\sigma} r_{i j}(\varphi)-w_{i} f_{i j}
+\end{equation*}
+
+where $\sigma$ is the CES elasticity of substitution across varieties, $w_{i}$ is the wage in country $i, L_{j}$ is the labor endowment in country $j, P_{j}$ is the CES price index in $j, \tau_{i j}$ is the iceberg trade cost of shipping from $i$ to $j$, and $f_{i j}$ is the fixed cost (in terms of labor) firms need to pay in $i$ to sell in $j$. Note that this expression implicitly assumes trade balance; that is, aggregate spending in country $j$ is equal to labor payments, $w_{j} L_{j}$.
+
+As in Melitz, firms pay a fixed cost $F_{i}$ (in terms of labor) to take an independent draw of $\varphi$ from a distribution $G(\varphi)$, and there is an exogenous exit probability $\delta$. As in Chaney $(2008)$, we impose that $G(\varphi)=1-\varphi^{-\theta}$ with $\theta>\sigma-1$.
+\begin{enumerate}[label=\textbf{\roman*.}]
+    \item Show that the probability of a firm from $i$ exporting to $j, n_{i j} \equiv \Pr\left[\pi_{i j}(\varphi)>0\right]$ is
+
+\begin{equation*}
+n_{i j}=\rho\left(\tau_{i j}\left(f_{i j}\right)^{\frac{1}{\sigma-1}}\right)^{-\theta}\left(w_{i}\right)^{-\frac{\sigma}{\sigma-1} \theta}\left(P_{j}\left(w_{j} L_{j}\right)^{\frac{1}{\sigma-1}}\right)^{\theta}
+\end{equation*}
+where $\rho \equiv\left(\frac{(\sigma)^{\frac{\sigma}{\sigma-1}}}{\sigma-1}\right)^{-\theta}$.
+\item[\textbf{Sol.}] Algebra time
+\begin{align*}
+    n_{ij} &= \pr\left( \pi_{ij}(\varphi)>0\right) \\
+    &= \pr\left( \pi_{ij}(\varphi)>0\right) = \pr\left( r_{ij}(\varphi)>\sigma w_if_{ij}\right) \\ 
+    &= \pr\left(\frac{\sigma}{\sigma-1}\frac{\tau_{ij}w_i}{P_j}\left(\frac{w_jL_j}{\sigma w_if_{ij}}\right)^{\frac{1}{1-\sigma}}>\varphi\right) \\ 
+    &= 1- \rho \left(\frac{\tau_{ij}w_i}{P_j}\left(\frac{w_jL_j}{w_if_{ij}}\right)^{\frac{1}{1-\sigma}}\right)^{-\theta}
+\end{align*}
+Almost the same, though. \textcolor{red}{I think I figure the trick but is too late now. I just needed to switch the inequality earlier}. 
+
+\item Show that the average sales of firms from $i$ that export to $j, \bar{x}_{i j} \equiv \E\left[r_{i j}(\varphi) \mid \pi_{i j}(\varphi)>0\right]$, are given by
+
+\begin{equation*}
+\bar{x}_{i j}=\frac{\theta \sigma}{\theta-(\sigma-1)} w_{i} f_{i j}
+\end{equation*}
+
+\item[\textbf{Sol.}] For convenience let $r_{ij}=K_{ij}\varphi^{\sigma-1}$ then 
+\begin{align*}
+    \bar{x}_{i j} &= \E\left[ K_{ij}\varphi^{\sigma-1} \Bigg\vert  \left(\frac{K_{ij}}{\sigma w_if_{ij}}\right)^{1-\sigma}>\varphi \right] \\ 
+    &= \left(\frac{K_{ij}}{\sigma w_if_{ij}}\right)^{\theta(1-\sigma)}\int_1^{ \left(\frac{K_{ij}}{\sigma w_if_{ij}}\right)^{1-\sigma}} K_{ij}\varphi^{\sigma-1} \varphi^{-\theta-1}\mathrm{d}\varphi \\ 
+    &= \left(\frac{K_{ij}}{\sigma w_if_{ij}}\right)^{\theta(1-\sigma)} \frac{K_{ij}\varphi^{\sigma-1} \varphi^{-\theta-1}}{\sigma-\theta-1}\Bigg\vert_1^{ \left(\frac{K_{ij}}{\sigma w_if_{ij}}\right)^{1-\sigma}} 
+\end{align*}
+
+\item Show that the free entry condition, $w_{i} F_{i}=\frac{1}{\delta} \sum_{j} \Pr\left[\pi_{i j}(\varphi)>0\right] E\left[\pi_{i j}(\varphi) \mid \pi_{i j}(\varphi)>0\right]$, is equivalent to
+
+\begin{equation*}
+w_{i} F_{i}=\frac{1}{\delta} \frac{\sigma-1}{\theta \sigma} \sum_{j} n_{i j} \bar{x}_{i j} .
+\end{equation*}
+
+\item[\textbf{Sol.}] Apply the results
+\begin{align*}
+    w_{i} F_{i} &=\frac{1}{\delta} \sum_{j} \pr\left[\pi_{i j}(\varphi)>0\right] \E\left[\pi_{i j}(\varphi) \mid \pi_{i j}(\varphi)>0\right] \\ 
+    &=\frac{1}{\delta} \sum_{j} n_{ij} \E\left[\pi_{i j}(\varphi) \mid \pi_{i j}(\varphi)>0\right] \\ 
+    &=\frac{1}{\delta} \sum_{j} n_{ij} \E\left[\frac{1}{\sigma}r_{i j}(\varphi) -w_{i} f_{i j} \bigg\vert \pi_{i j}(\varphi)>0\right] \\ 
+    &=\frac{1}{\delta} \sum_{j} n_{ij} \left(\frac{1}{\sigma}-\frac{\theta-(\sigma-1)}{\theta\sigma}\right)\overline{x}_{ij} \\ 
+    &=\frac{\sigma-1}{\delta\theta\sigma} \sum_{j} n_{ij} \overline{x}_{ij}
+\end{align*}
+
+\item Let $N_{i}$ denote the mass of entrants in country $i$. Note that, since labor is the only factor of production, the labor market clearing condition requires labor payments to be identical to the aggregate revenue of all firms in country $i, w_{i} L_{i}=\sum_{j} N_{i} n_{i j} \bar{x}_{i j}$. Use this fact to show that
+
+\begin{equation*}
+N_{i}=\left(\frac{1}{\delta} \frac{\sigma-1}{\theta \sigma}\right) \frac{L_{i}}{F_{i}} .
+\end{equation*}
+
+\item[\textbf{Sol.}] Using previous results
+\begin{align*}
+    w_iL_i &= N_i\sum_j n_{ij}\overline{x}_{ij} \\ 
+    &= w_iF_i\frac{\delta\theta\sigma}{\sigma-1} N_i
+\end{align*}
+
+\item We now use the expressions in items 1,2 and 4 to construct bilateral trade flows from $i$ to $j$, which by definition are $X_{i j} \equiv N_{i} n_{i j} \bar{x}_{i j}$.
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+    \item  Derive an expression for $X_{i j}$, and the associated trade elasticity, $\frac{\partial \log X_{i j}}{\partial \log \tau_{i j}}$.
+    \item[\textbf{Sol.}] For the first 
+    \begin{align*}
+        X_{ij} &= N_{i} n_{i j} \bar{x}_{i j}  
+        = \left(\frac{1}{\delta} \frac{\sigma-1}{\theta \sigma}\right) \frac{L_{i}}{F_{i}} n_{i j} \bar{x}_{i j}
+        = \left(\frac{1}{\delta} \frac{\sigma-1}{\theta \sigma}\right) \frac{L_{i}}{F_{i}} n_{i j} \frac{\theta \sigma}{\theta-(\sigma-1)} w_{i} f_{i j} \\ 
+        &= \left(\frac{1}{\delta} \frac{\sigma-1}{\theta \sigma}\right) \frac{L_{i}}{F_{i}} \rho\left(\tau_{i j}\left(f_{i j}\right)^{\frac{1}{\sigma-1}}\right)^{-\theta}\left(w_{i}\right)^{-\frac{\sigma}{\sigma-1} \theta}\left(P_{j}\left(w_{j} L_{j}\right)^{\frac{1}{\sigma-1}}\right)^{\theta} \frac{\theta \sigma}{\theta-(\sigma-1)} w_{i} f_{i j}  
+    \end{align*}
+    From the previous expression is clear that $\frac{\partial \log X_{i j}}{\partial \log \tau_{i j}} = -\theta$
+    \item Compute the elasticity of the extensive and intensive margins of bilateral trade flows with respect to variable trade costs $\tau_{i j}, \frac{\partial \log n_{i j}}{\partial \log \tau_{i j}}$ and $\frac{\partial \log \bar{x}_{i j}}{\partial \log \tau_{i j}}$ respectively. Provide a brief intuition for the magnitude of each of these elasticities.
+    \item[\textbf{Sol.}] Recall that 
+    \begin{equation*}
+        n_{i j}=\rho\left(\tau_{i j}\left(f_{i j}\right)^{\frac{1}{\sigma-1}}\right)^{-\theta}\left(w_{i}\right)^{-\frac{\sigma}{\sigma-1} \theta}\left(P_{j}\left(w_{j} L_{j}\right)^{\frac{1}{\sigma-1}}\right)^{\theta}
+    \end{equation*}
+    Then is clear that the elasticity is $\tau_{i j}, \frac{\partial \log n_{i j}}{\partial \log \tau_{i j}} = -\theta$. Similarly, 
+    \begin{equation*}
+        \bar{x}_{i j}=\frac{\theta \sigma}{\theta-(\sigma-1)} w_{i} f_{i j}
+    \end{equation*}
+    thus the elasticity is 0. Note the elasticity is driven by how thick the tail of productivity is. Thus if the tail is thicker, there are more productive firms ($\theta$ is smaller) then there will be more trade in the extensive margin as more firms will find it profitable to export. The intensive margin is independent because iceberg costs only affect the marginal cost of production. However, conditional on being able to export (and the fact that markups are constant), the production will not change. 
+
+\end{enumerate}
+
+
+\item  Use the gravity equation obtained above to derive the following expression for the real wage in terms of the domestic trade share, $x_{i i} \equiv X_{i i} / w_{i} L_{i}$ :
+
+\begin{equation*}
+\frac{w_{i}}{P_{i}}=\zeta_{i}\left(x_{i i}\right)^{-\frac{1}{\theta}}
+\end{equation*}
+where $\zeta_{i}$ is a positive constant.
+
+\item[\textbf{Sol.}] Note that 
+\begin{align*}
+    x_{ii} &= \left(\frac{1}{\delta} \frac{\sigma-1}{\theta \sigma}\right) \frac{\rho}{F_{i}}f_{ii}^{\frac{-\theta}{\sigma-1}} \left(\textcolor{blue}{\frac{P_i}{w_i}} L_{i}^{\frac{1}{\sigma-1}}\right)^{\theta} \frac{\theta \sigma}{\theta-(\sigma-1)} f_{ii}  
+\end{align*}
+which is what we wanted. 
+\item Use the expression above to derive the gains from trade (i.e., the change in $w_{i} / P_{i}$ as the country moves to autarky with $\tau_{i j} \rightarrow \infty$ for all $i \neq j$ ). How does this relate to the main result in Arkolakis, Costinot, Rodriguez-Clare (2012) (ACR)? Can you show that this model satisfies assumptions R1-R3 in ACR? 
+\item[\textbf{Sol.}] As $\tau_{ij}$ increases $x_{ii}\to 1$ and real wages decrease. Specifically the elasticity to an increase in the domestic trade share is $\sfrac{-1}{\theta}$. 
+
+\end{enumerate}
+
+
+\clearpage
+\section{Short questions}
+
+Your responses to these short questions should be one paragraph per short question.
+\begin{enumerate}[label=\textbf{\roman*.}]
+    \item Two benefits of the Poisson pseudo-maximum-likelihood estimator we discussed in week 5 are that (1) it can accommodate zero flows and (2) it satisfies the adding-up constraints of structural gravity. Discuss the relevance of these benefits when the gravity equation describes commuting flows between residences and workplaces within a city.
+    \item[\textbf{Sol.}] First of all when studying the flow of commuters within a city, many zeros will arise between different commuting zones. One way to deal with this issue is to use a more thick city partition. Still, the cost of this approach is that a lot of information is lost, or some bias can be created. Using the PPMLE allows estimating the gravity equation without dropping the observations where there are no flows. These zeros are also informative. The adding-up constraint is also important as the city's population is typically assumed to be fixed, and the gravity equation should consider this. 
+    \item The Helpman, Melitz, Yeaple (2004) model features a proximity-concentration tradeoff. The result in which the most-productive firms invest abroad to produce, intermediate firms export, and the least-productive firms only sell domestically was obtained under the assumption of CES demand (slide 41 of week 10). Using the concepts of supermodularity and/or log-supermodularity introduced in week 8, describe nonparametric sufficient conditions on the demand system that deliver the same ordering of entry decision by productivity level. Start by giving a non-parametric sufficient condition for a Melitz model in which exporting is the only way to sell to foreign customers and the more productive firms export and the less productive firms do not. Then cover the case in which the firm also decides between investing abroad or exporting, as in Helpman, Melitz, Yeaple (2004).
+    \item Large cities are net exporters of medical services: they produce more than they consume. Small cities are net importers. An overeager economist tells you that these facts imply a "home-market effect" for intranational trade in medical services. Push back by explaining how neoclassical models could be consistent with these facts. In particular, how would you rationalize them in a Ricardian model? In a factor-proportions model? Describe a necessary ingredient to test the home-market-effect hypothesis in this setting.
+    \item[\textbf{Sol.}] There are a lot of assumptions embedded around the fact that medical services. Consider a setting where larger cities (higher supply of labor) and, in particular, a higher supply of skilled labor will allow to have medical services concentrated in large cities as they have comparative advantage relative to smaller cities (explained by a higher supply of human capital). Similarly, it could be a story of technology that gives larger cities comparative advantage in the production of medical services. In the background, in order to have a home market effect, it is necessary that there are increasing returns to scale in the production of medical services. Increasing returns to scale can be achieved through a fix costs, specific technology, or having some hypothesis on agglomeration effects for doctors. 
+    \end{enumerate}
+\end{document}
